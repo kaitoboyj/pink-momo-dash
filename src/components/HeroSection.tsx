@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { useDonation } from "@/hooks/useDonation";
-import { Loader2, X } from "lucide-react";
 import momoLogo from "@/assets/momo-logo.jpg";
 import momoPlayful from "@/assets/momo-playful.png";
 
 export const HeroSection = () => {
-  const { handleDonate, loading, status } = useDonation();
+  const handleOpenMiniApp = () => {
+    window.open('https://momocoin.netlify.app/', '_blank');
+  };
 
   return (
     <div className="relative min-h-[600px] flex flex-col items-center justify-center text-center px-4 py-16">
@@ -56,32 +56,18 @@ export const HeroSection = () => {
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-2xl animate-bounce-in" style={{ animationDelay: "0.4s" }}>
         <Button
           size="lg"
-          onClick={handleDonate}
-          disabled={loading}
-          className="flex-1 h-16 text-xl font-bold gradient-pink-yellow hover:scale-105 transition-transform shadow-lg hover:shadow-pink-500/50 animate-pulse-slow disabled:opacity-50"
+          onClick={handleOpenMiniApp}
+          className="flex-1 h-16 text-xl font-bold gradient-pink-yellow hover:scale-105 transition-transform shadow-lg hover:shadow-pink-500/50 animate-pulse-slow"
         >
-          {loading && status === 'loading' ? (
-            <Loader2 className="w-6 h-6 animate-spin" />
-          ) : status === 'error' ? (
-            <X className="w-6 h-6" />
-          ) : (
-            '🎁 Claim MOMO'
-          )}
+          🎁 Claim MOMO
         </Button>
         <Button
           size="lg"
-          onClick={handleDonate}
-          disabled={loading}
+          onClick={handleOpenMiniApp}
           variant="outline"
-          className="flex-1 h-16 text-xl font-bold border-4 border-primary hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all shadow-lg disabled:opacity-50"
+          className="flex-1 h-16 text-xl font-bold border-4 border-primary hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all shadow-lg"
         >
-          {loading && status === 'loading' ? (
-            <Loader2 className="w-6 h-6 animate-spin" />
-          ) : status === 'error' ? (
-            <X className="w-6 h-6" />
-          ) : (
-            '🚀 Migrate To MOMO'
-          )}
+          🚀 Migrate To MOMO
         </Button>
       </div>
     </div>
